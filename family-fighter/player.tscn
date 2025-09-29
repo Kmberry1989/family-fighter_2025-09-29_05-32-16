@@ -5,7 +5,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cvfjcxtjx705f" path="res://animations/jump.res" id="3_sweqy"]
 [ext_resource type="AnimationLibrary" uid="uid://bu1umyhltcxkc" path="res://animations/punch.res" id="4_2hs0m"]
 [ext_resource type="AnimationLibrary" uid="uid://bwhxgt41xg8x6" path="res://animations/walk.res" id="5_1jxqw"]
-[ext_resource type="AnimationLibrary" uid="uid://dgrs8f7d8g7d" path="res://animations/idle.res" id="6_abcde"]
+[ext_resource type="AnimationLibrary" path="res://animations/idle.res" id="6_abcde"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 height = 2.0097656
