@@ -20,6 +20,12 @@ transform = Transform3D(1, 0, 0, 0, 0.9384569, 0.3453965, 0, -0.3453965, 0.93845
 
 [node name="Player" parent="." instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 0.9502615, 0, 0, 0, 1, 0.16198674, 0.92750466, -0.35161257)
+target_path = NodePath("../Opponent")
+
+[node name="Opponent" parent="." instance=ExtResource("2_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 0.9502615, 0, 0, 0, 1, -0.16198674, 0.92750466, 0.35161257)
+is_cpu = true
+target_path = NodePath("../Player")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
