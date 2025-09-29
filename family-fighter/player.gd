@@ -10,15 +10,14 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	print("AnimationPlayer node:", animation_player)
-	if animation_player:
-		var libs = animation_player.get_libraries()
-		for lib_name in libs:
-			print("Library:", lib_name)
-			var lib = animation_player.get_library(lib_name)
-			if lib:
-				print("Animations:", lib.get_animation_list())
-
+    print("AnimationPlayer node:", animation_player)
+    if animation_player:
+        var library_names = animation_player.get_animation_library_list()
+        print("Animation Libraries:", library_names)
+        for lib_name in library_names:
+            var animation_library = animation_player.get_animation_library(lib_name)
+            if animation_library:
+                print("Animations in library '", lib_name, "':", animation_library.get_animation_list())
 func _physics_process(delta):
 	# Add gravity.
 	if not is_on_floor():
