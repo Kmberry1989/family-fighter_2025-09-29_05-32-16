@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00A99D"/>
+      <stop offset="100%" stop-color="#008080"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feOffset dy="2" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="2" result="blur"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0
+                                           0 0 0 0 0
+                                           0 0 0 0 0
+                                           0 0 0 0.35 0" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="circleClip">
+      <circle cx="48" cy="48" r="40"/>
+    </clipPath>
+  </defs>
+  <title>Up Button</title>
+  <desc>Touch control: Up</desc>
+  <g filter="url(#shadow)">
+    <circle cx="48" cy="48" r="40" fill="url(#grad)" stroke="#006d6d" stroke-width="2"/>
+    <!-- subtle top gloss -->
+    <g clip-path="url(#circleClip)" opacity="0.18">
+      <ellipse cx="48" cy="30" rx="38" ry="16" fill="#FFFFFF"/>
+    </g>
+    <path d="M48 20 L76 48 H62 V72 H34 V48 H20 Z" fill="#FFFFFF" />
+  </g>
+</svg>

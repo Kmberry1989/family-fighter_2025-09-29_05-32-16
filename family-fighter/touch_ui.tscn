@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobm7hcqnga4b"]
+
+[ext_resource type="Texture2D" uid="uid://dn8unjriwjxul" path="res://icon.svg" id="1_o10gd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brbsc"]
+
+[node name="Touch_UI" type="CanvasLayer"]
+
+[node name="ButtonUp" type="TouchScreenButton" parent="."]
+position = Vector2(134, 254)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "move_forward"
+
+[node name="ButtonDown" type="TouchScreenButton" parent="."]
+position = Vector2(136, 502)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "move_backward"
+
+[node name="ButtonLeft" type="TouchScreenButton" parent="."]
+position = Vector2(11, 379)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "move_left"
+
+[node name="ButtonRight" type="TouchScreenButton" parent="."]
+position = Vector2(260, 378)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "move_right"
+
+[node name="ButtonJump" type="TouchScreenButton" parent="."]
+position = Vector2(1007, 392)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "jump"
+
+[node name="ButtonPunch" type="TouchScreenButton" parent="."]
+position = Vector2(876, 502)
+texture_normal = ExtResource("1_o10gd")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "punch"
