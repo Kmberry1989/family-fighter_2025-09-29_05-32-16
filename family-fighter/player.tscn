@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://1i17lmxe4wsg"]
+
+[ext_resource type="Script" uid="uid://cdcd4jg8jbca5" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://dq3ewaonfe08q" path="res://characters/MargoT.fbx" id="2_onrkg"]
+[ext_resource type="AnimationLibrary" uid="uid://cvfjcxtjx705f" path="res://animations/jump.res" id="3_sweqy"]
+[ext_resource type="AnimationLibrary" uid="uid://bu1umyhltcxkc" path="res://animations/punch.res" id="4_2hs0m"]
+[ext_resource type="AnimationLibrary" uid="uid://bwhxgt41xg8x6" path="res://animations/walk.res" id="5_1jxqw"]
+[ext_resource type="AnimationLibrary" uid="uid://dgrs8f7d8g7d" path="res://animations/idle.res" id="6_abcde"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+height = 2.0097656
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8332952, 0, 0, 0, 1.5417905, 0, 0.61915576, 0)
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="Model" parent="." instance=ExtResource("2_onrkg")]
+
+[node name="GeneralSkeleton" parent="Model" index="0"]
+bones/1/position = Vector3(1.5894359e-05, 0.0076490343, -1.2099743e-05)
+bones/1/rotation = Quaternion(-0.01713851, 0.018684844, -0.028911157, 0.99926037)
+bones/2/rotation = Quaternion(-0.03155087, 0.015444991, 0.026361963, 0.9990351)
+bones/3/rotation = Quaternion(0.015853403, 0.0022643525, 0.0015055257, 0.99987066)
+bones/4/rotation = Quaternion(0.015857426, 0.0022154152, 0.0015624679, 0.9998706)
+bones/5/rotation = Quaternion(0.056154463, 0.00332604, -0.0013806116, 0.99841565)
+bones/6/rotation = Quaternion(-0.039157182, -0.04737812, 0.005346925, 0.9980949)
+bones/8/rotation = Quaternion(-0.40874958, -0.5055924, 0.6983246, -0.29940438)
+bones/9/rotation = Quaternion(0.5217038, 0.1174517, 0.12521568, 0.83567417)
+bones/10/rotation = Quaternion(0.047603026, 0.0049127387, 0.0648454, 0.9967472)
+bones/11/rotation = Quaternion(-0.15905102, 0.010726011, 0.026806721, 0.9868481)
+bones/12/rotation = Quaternion(0.18717021, 0.12701114, 0.2119372, 0.9507461)
+bones/13/rotation = Quaternion(-0.044477347, -0.06889524, -0.29445267, 0.95214117)
+bones/14/rotation = Quaternion(-0.01485634, -0.03250373, 0.016873477, 0.9992188)
+bones/16/rotation = Quaternion(0.16872424, -0.0073631415, 0.0031168014, 0.9856309)
+bones/17/rotation = Quaternion(0.17819041, -0.00015483797, -0.10231182, 0.97866267)
+bones/18/rotation = Quaternion(-0.033980716, 0.001501288, 0.024838297, 0.9991127)
+bones/20/rotation = Quaternion(0.7538252, -0.25663444, 0.40627837, 0.44813418)
+bones/21/rotation = Quaternion(0.43482926, -0.25174275, -0.0681855, 0.8619165)
+bones/22/rotation = Quaternion(-0.09099148, 0.004770701, -0.108035214, 0.98996276)
+bones/23/rotation = Quaternion(-0.13657674, 0.19450241, 0.019936292, 0.97114277)
+bones/24/rotation = Quaternion(0.08310485, -0.031852815, -0.20503649, 0.9746995)
+bones/25/rotation = Quaternion(-0.005240069, 0.011839803, 0.12017603, 0.99266815)
+bones/26/rotation = Quaternion(0.06616978, 0.037237708, 0.009460732, 0.9970684)
+bones/28/rotation = Quaternion(0.13804975, 0.026287971, -0.1305971, 0.9814254)
+bones/29/rotation = Quaternion(0.17172034, -0.0005055377, 0.051109213, 0.983819)
+bones/30/rotation = Quaternion(0.06589863, -0.0058616465, -0.054489803, 0.9963202)
+bones/32/rotation = Quaternion(-0.0017568732, 0.30467823, 0.9523916, -0.010884085)
+bones/33/rotation = Quaternion(-0.5315961, -0.05797181, 0.061864045, 0.84274423)
+bones/34/rotation = Quaternion(0.44671726, 0.049983613, 0.08694237, 0.88903683)
+bones/35/rotation = Quaternion(0.4356362, -0.23449993, 0.027126355, 0.8686167)
+bones/37/rotation = Quaternion(-0.06246193, 0.079660736, 0.9928289, -0.06358732)
+bones/38/rotation = Quaternion(-0.26234663, -0.05487581, -0.010971191, 0.9633497)
+bones/39/rotation = Quaternion(0.61368227, -0.047287494, -0.08887079, 0.7831092)
+bones/40/rotation = Quaternion(0.32141122, 0.14195311, -0.04044355, 0.9353655)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Model"]
+root_node = NodePath("../GeneralSkeleton")
+libraries = {
+&"idle": ExtResource("6_abcde"),
+&"jump": ExtResource("3_sweqy"),
+&"punch": ExtResource("4_2hs0m"),
+&"walk": ExtResource("5_1jxqw")
+}
+
+[editable path="Model"]
