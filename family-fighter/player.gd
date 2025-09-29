@@ -10,14 +10,18 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-    print("AnimationPlayer node:", animation_player)
+    _rename_animations()
+
+func _rename_animations():
     if animation_player:
         var library_names = animation_player.get_animation_library_list()
-        print("Animation Libraries:", library_names)
         for lib_name in library_names:
             var animation_library = animation_player.get_animation_library(lib_name)
             if animation_library:
-                print("Animations in library '", lib_name, "':", animation_library.get_animation_list())
+                var animation_names = animation_library.get_animation_list()
+                for anim_name in animation_names:
+                    if anim_name == "mixamo_com":
+                        animation_library.rename_animation(anim_name, lib_name)
 func _physics_process(delta):
 	# Add gravity.
 	if not is_on_floor():
