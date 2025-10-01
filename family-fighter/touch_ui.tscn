@@ -1,43 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://cobm7hcqnga4b"]
+[gd_scene load_steps=10 format=3 uid="uid://cobm7hcqnga4b"]
 
-[ext_resource type="Texture2D" uid="uid://dn8unjriwjxul" path="res://icon.svg" id="1_o10gd"]
+[ext_resource type="Texture2D" uid="uid://b5hbdsgdmnp2g" path="res://icons/btn-up-bw.svg" id="1_5age4"]
+[ext_resource type="Texture2D" uid="uid://cap3gtfb22pxl" path="res://icons/btn-down-bw.svg" id="2_udta5"]
+[ext_resource type="Texture2D" uid="uid://ciddo42mssjqn" path="res://icons/btn-left-bw.svg" id="3_764m4"]
+[ext_resource type="Texture2D" uid="uid://3iw7iy5xienk" path="res://icons/btn-right-bw.svg" id="4_bps23"]
+[ext_resource type="Texture2D" uid="uid://dslp1qtamhgwp" path="res://icons/btn-jump-bw.svg" id="5_2mao6"]
+[ext_resource type="Texture2D" uid="uid://d3lpxkya8w568" path="res://icons/btn-special-bw.svg" id="6_7jx47"]
+[ext_resource type="Texture2D" uid="uid://b4n4dnw01y3cp" path="res://icons/btn-punch-bw.svg" id="7_ndx61"]
+[ext_resource type="Texture2D" uid="uid://2uba3ojhmxfm" path="res://icons/btn-kick-bw.svg" id="8_ntg8m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brbsc"]
 
 [node name="Touch_UI" type="CanvasLayer"]
 
 [node name="ButtonUp" type="TouchScreenButton" parent="."]
-position = Vector2(134, 254)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(132, 254)
+scale = Vector2(1.48176, 1.5375361)
+texture_normal = ExtResource("1_5age4")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "move_forward"
 
 [node name="ButtonDown" type="TouchScreenButton" parent="."]
-position = Vector2(136, 502)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(134, 502)
+scale = Vector2(1.48176, 1.5375361)
+texture_normal = ExtResource("2_udta5")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "move_backward"
 
 [node name="ButtonLeft" type="TouchScreenButton" parent="."]
-position = Vector2(11, 379)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(4, 379)
+scale = Vector2(1.48176, 1.5375361)
+texture_normal = ExtResource("3_764m4")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "move_left"
 
 [node name="ButtonRight" type="TouchScreenButton" parent="."]
-position = Vector2(260, 378)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(256.99988, 378)
+scale = Vector2(1.48176, 1.5375361)
+texture_normal = ExtResource("4_bps23")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "move_right"
 
 [node name="ButtonJump" type="TouchScreenButton" parent="."]
-position = Vector2(1007, 392)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(805, 483.00003)
+scale = Vector2(1.5000005, 1.4666666)
+texture_normal = ExtResource("5_2mao6")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "jump"
 
+[node name="ButtonSpecial" type="TouchScreenButton" parent="."]
+position = Vector2(962.99994, 481.00003)
+scale = Vector2(1.466666, 1.4666672)
+texture_normal = ExtResource("6_7jx47")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "special"
+
 [node name="ButtonPunch" type="TouchScreenButton" parent="."]
-position = Vector2(876, 502)
-texture_normal = ExtResource("1_o10gd")
+position = Vector2(805, 324)
+scale = Vector2(1.4666667, 1.4666667)
+texture_normal = ExtResource("7_ndx61")
 shape = SubResource("CapsuleShape2D_brbsc")
 action = "punch"
+
+[node name="ButtonKick" type="TouchScreenButton" parent="."]
+position = Vector2(960, 324)
+scale = Vector2(1.466667, 1.4666666)
+texture_normal = ExtResource("8_ntg8m")
+shape = SubResource("CapsuleShape2D_brbsc")
+action = "kick"
