@@ -1,8 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpb8l0u5bh0vh"]
+[gd_scene load_steps=13 format=3 uid="uid://dpb8l0u5bh0vh"]
 
 [ext_resource type="PackedScene" uid="uid://cobm7hcqnga4b" path="res://touch_ui.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://1i17lmxe4wsg" path="res://player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bcmqw3oemu6kr" path="res://opponent.tscn" id="3_oppo"]
+[ext_resource type="Texture2D" uid="uid://ch2ro5jk6dvid" path="res://animations/grass.png" id="4_ioo17"]
+[ext_resource type="PackedScene" uid="uid://bxkcmpbrvg2iv" path="res://animations/pool.fbx" id="5_wse8f"]
+[ext_resource type="PackedScene" uid="uid://7mdrpyrmcbys" path="res://animations/shed.fbx" id="6_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://bm77qkcje3mxv" path="res://animations/swings.fbx" id="7_k3n1d"]
+[ext_resource type="PackedScene" uid="uid://cqfn1uc17d00b" path="res://animations/trampoline.fbx" id="8_2o6r5"]
+[ext_resource type="PackedScene" uid="uid://bu3d5iin1wdxf" path="res://animations/playground.fbx" id="9_70uel"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
+albedo_texture = ExtResource("4_ioo17")
 
 [sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
 
@@ -17,23 +26,39 @@ transform = Transform3D(1, 0, 0, 0, -0.0050789337, 0.9999871, 0, -0.9999871, -0.
 [node name="Touch_UI" parent="." instance=ExtResource("1_f3sb7")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9384569, 0.3453965, 0, -0.3453965, 0.9384569, 0.0039867163, 1.0397799, 1.5446558)
+transform = Transform3D(1, 0, 0, 0, 0.96877384, 0.247946, 0, -0.247946, 0.96877384, 0.080356956, 3.1951754, 6.49656)
 
 [node name="Player" parent="." instance=ExtResource("2_fj7yv")]
-transform = Transform3D(-0.32320732, 0, 0.94632816, 0, 0.9502616, 0, -0.94632816, 0, -0.32320732, -2.5269792, 0.5628127, -0.35161257)
+transform = Transform3D(-0.32320732, 0, 0.94632816, 0, 0.9502616, 0, -0.94632816, 0, -0.32320732, -1.2785509, 1.0176467, 3.3031726)
 target_path = NodePath("../Opponent")
 
 [node name="Opponent" parent="." instance=ExtResource("3_oppo")]
-transform = Transform3D(-0.04533402, 0, -0.9770789, 0, 1.900523, 0, 1.9992293, 0, -0.022155996, 2.4649973, 0.98800665, -0.27470618)
+transform = Transform3D(-0.04533402, 0, -0.9770789, 0, 1.900523, 0, 1.9992293, 0, -0.022155996, 2.8846903, 10.989777, 21.6844)
 target_path = NodePath("../Player")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(-15.699828, 0, 0, 0, 0.03189372, 0, 0, 0, 15.081805, 0, 0.022523522, 0.06604028)
+transform = Transform3D(-15.699794, -5.7146277e-05, 0.013390861, -0.02813293, 0.031893667, -0.0025903527, 0.01393483, 5.5277396e-06, 15.081796, -0.00076293945, 0.038514733, 0.058105707)
+material_override = SubResource("StandardMaterial3D_hiqwa")
 mesh = SubResource("BoxMesh_gv5m4")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-12.915696, 0, 0, 0, 0.014667422, 0, 0, 0, 4.438818, 0.08119607, 0.022523522, 0.03896898)
 shape = SubResource("BoxShape3D_fj7yv")
+
+[node name="pool" parent="." instance=ExtResource("5_wse8f")]
+transform = Transform3D(1.1128765, 0, 0, 0, 1.1933103, 0, 0, 0, 1, 2.9178128, 0.0810045, -5.776245)
+
+[node name="shed" parent="." instance=ExtResource("6_ic0uy")]
+transform = Transform3D(0.13818784, 0, 0.99040604, 0, 1, 0, -0.99040604, 0, 0.13818784, -1.8064077, 0.14617825, -0.78759766)
+
+[node name="swings" parent="." instance=ExtResource("7_k3n1d")]
+transform = Transform3D(-0.0030368958, 0, 0.9999954, 0, 1, 0, -0.9999954, 0, -0.0030368958, 0.115074635, 0.0565902, 1.0628662)
+
+[node name="trampoline" parent="." instance=ExtResource("8_2o6r5")]
+transform = Transform3D(1.5190945, 0, 0, 0, 1.6000085, 0, 0, 0, 1, 5.4991894, 0.01630646, 4.659668)
+
+[node name="playground" parent="." instance=ExtResource("9_70uel")]
+transform = Transform3D(0.02879396, 0, 0.9995854, 0, 1, 0, -0.9995854, 0, 0.02879396, -3.5462036, 0, -1.4373779)
