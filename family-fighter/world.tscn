@@ -24,7 +24,7 @@ transform = Transform3D(-0.32320732, 0, 0.94632816, 0, 0.9502616, 0, -0.94632816
 target_path = NodePath("../Opponent")
 
 [node name="Opponent" parent="." instance=ExtResource("3_oppo")]
-transform = Transform3D(-0.04533402, 0, -0.9770789, 0, 1.900523, 0, 1.9992293, 0, -0.022155996, 2.4649973, 0.1320135, -0.27470618)
+transform = Transform3D(-0.04533402, 0, -0.9770789, 0, 1.900523, 0, 1.9992293, 0, -0.022155996, 2.4649973, 0.98800665, -0.27470618)
 target_path = NodePath("../Player")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

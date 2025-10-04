@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bcmqw3oemu6kr"]
+[gd_scene load_steps=20 format=3 uid="uid://bcmqw3oemu6kr"]
 
 [ext_resource type="Script" uid="uid://cdcd4jg8jbca5" path="res://player.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://c0dk65w8rgw06" path="res://characters/DonaldT.fbx" id="2_donald"]
@@ -11,10 +11,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://dtxjwmhxn4u70" path="res://animations/DonaldIdle.res" id="7_gnu6t"]
 [ext_resource type="AnimationLibrary" uid="uid://dpwqb8ajytv4a" path="res://animations/Standing Death Backward 01.res" id="8_bu1qt"]
 [ext_resource type="AnimationLibrary" uid="uid://cagugapb066st" path="res://animations/DonaldWalk.res" id="8_cocri"]
-[ext_resource type="AnimationLibrary" uid="uid://d37y2xufa6rus" path="res://animations/fireball.res" id="9_gnu6t"]
-[ext_resource type="AnimationLibrary" uid="uid://umxjnm031vvj" path="res://animations/hurricane kick.res" id="10_cocri"]
+[ext_resource type="AnimationLibrary" uid="uid://d37y2xufa6rus" path="res://animations/fireball.res" id="9_fireball"]
+[ext_resource type="AnimationLibrary" uid="uid://umxjnm031vvj" path="res://animations/hurricane kick.res" id="10_hurricane"]
 [ext_resource type="AnimationLibrary" uid="uid://b1h47rauynaio" path="res://animations/idle (2).res" id="11_ifc41"]
-[ext_resource type="Animation" uid="uid://d22lt4alx2msi" path="res://animations/kick1.anim" id="13_icndx"]
+[ext_resource type="AnimationLibrary" uid="uid://clkpt0wicp2ba" path="res://animations/kick1.res" id="13_kick1res"]
 [ext_resource type="AnimationLibrary" uid="uid://cigekmkxdg23o" path="res://animations/kick2.res" id="14_swiur"]
 [ext_resource type="AnimationLibrary" uid="uid://iapeoyxq83qk" path="res://animations/punch1.res" id="15_mjjwu"]
 [ext_resource type="AnimationLibrary" uid="uid://c5py04xby80vn" path="res://animations/punch2.res" id="16_yi71x"]
@@ -23,21 +23,17 @@
 radius = 0.22753906
 height = 1.3022461
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ti0h3"]
-_data = {
-&"kick1": ExtResource("13_icndx")
-}
-
 [node name="Opponent" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5076599, 0)
 script = ExtResource("1_script")
 is_cpu = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8332952, 0, 0, 0, 1.5417905, -0.014384389, 0.4595046, 0.10434985)
+transform = Transform3D(1, 0, 0, 0, 0.8332952, 0, 0, 0, 1.5417905, -0.022028923, 0.073455274, 0.10434985)
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="Model" parent="." instance=ExtResource("2_donald")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4270415, 0)
 
 [node name="Skeleton3D" parent="Model" index="0"]
 bones/1/position = Vector3(0.002610363, 0.40787783, -0.049925346)
@@ -125,26 +121,17 @@ libraries = {
 &"DonaldWalk": ExtResource("8_cocri"),
 &"Reaction": ExtResource("7_bguui"),
 &"Standing Death Backward 01": ExtResource("8_bu1qt"),
-&"fireball": ExtResource("9_gnu6t"),
-&"hurricane kick": ExtResource("10_cocri"),
+&"fireball": ExtResource("9_fireball"),
+&"hurricane kick": ExtResource("10_hurricane"),
 &"idle": ExtResource("6_idle"),
 &"idle (2)": ExtResource("11_ifc41"),
 &"jump": ExtResource("3_jump"),
 &"kick": ExtResource("5_nsxeh"),
-&"kick1": SubResource("AnimationLibrary_ti0h3"),
+&"kick1": ExtResource("13_kick1res"),
 &"kick2": ExtResource("14_swiur"),
 &"punch": ExtResource("4_punch"),
 &"punch1": ExtResource("15_mjjwu"),
 &"punch2": ExtResource("16_yi71x"),
-&"walk": ExtResource("5_walk")
-}
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Model"]
-root_node = NodePath("../Skeleton3D")
-libraries = {
-&"idle": ExtResource("6_idle"),
-&"jump": ExtResource("3_jump"),
-&"punch": ExtResource("4_punch"),
 &"walk": ExtResource("5_walk")
 }
 

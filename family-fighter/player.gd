@@ -72,6 +72,9 @@ signal died
 @onready var model = $Model
 @onready var animation_player = $Model/AnimationPlayer
 
+var skeleton: Skeleton3D
+var _animation_tracks_fixed: bool = false
+
 var animation_aliases: Dictionary = {}
 var missing_animation_warnings: Dictionary = {}
 var attack_definitions: Dictionary = {}
@@ -94,6 +97,7 @@ func _ready():
 	health = max_health
 	_emit_health_changed()
 	_build_attack_definitions()
+	_prepare_animation_tracks()
 	_build_animation_aliases()
 	add_to_group("fighters")
 	if target_path != NodePath():
@@ -106,6 +110,85 @@ func _build_attack_definitions():
 	attack_definitions[StringName("kick")] = AttackDefinition.new(StringName("kick"), StringName("kick"), kick_damage, kick_range, kick_cooldown)
 	attack_definitions[StringName("kick_combo")] = AttackDefinition.new(StringName("kick_combo"), StringName("kick_combo"), kick_combo_damage, kick_combo_range, kick_combo_cooldown, true)
 	ai_attack_distance = max(ai_attack_distance, attack_definitions[StringName("kick_combo")].attack_range)
+
+# Align imported animation tracks with the skeleton name used in the scene.
+func _prepare_animation_tracks() -> void:
+	if _animation_tracks_fixed:
+		return
+	if animation_player == null or model == null:
+		return
+	var detected_skeleton: Skeleton3D = _find_first_skeleton(model)
+	if detected_skeleton == null:
+		return
+	skeleton = detected_skeleton
+	if animation_player.root_node != NodePath(".."):
+		animation_player.root_node = NodePath("..")
+	var skeleton_name: StringName = skeleton.name
+	for library_name in animation_player.get_animation_library_list():
+		var animation_library: AnimationLibrary = animation_player.get_animation_library(library_name)
+		if animation_library == null:
+			continue
+		for animation_name in animation_library.get_animation_list():
+			var animation: Animation = animation_library.get_animation(animation_name)
+			if animation == null:
+				continue
+			_retarget_skeleton_tracks(animation, skeleton_name)
+	_animation_tracks_fixed = true
+
+func _retarget_skeleton_tracks(animation: Animation, skeleton_name: StringName) -> void:
+	var root = animation_player.get_node(animation_player.root_node)
+	if not root:
+		return
+
+	for track_index in range(animation.get_track_count()):
+		var track_path: NodePath = animation.track_get_path(track_index)
+		if track_path.get_name_count() == 0:
+			continue
+
+		var first_node_name = track_path.get_name(0)
+		var node = root.get_node_or_null(first_node_name)
+
+		if node is Skeleton3D:
+			var updated_path: NodePath = _with_retargeted_skeleton_name(track_path, skeleton_name)
+			if updated_path != track_path:
+				animation.track_set_path(track_index, updated_path)
+
+func _with_retargeted_skeleton_name(path: NodePath, skeleton_name: StringName) -> NodePath:
+	var names: Array = []
+	for index in range(path.get_name_count()):
+		var name_component: StringName = path.get_name(index)
+		if index == 0:
+			names.append(skeleton_name)
+		else:
+			names.append(name_component)
+	var subnames: Array = []
+	for sub_index in range(path.get_subname_count()):
+		subnames.append(path.get_subname(sub_index))
+	var path_string := ""
+	if path.is_absolute():
+		path_string = "/"
+	if names.size() > 0:
+		path_string += String(names[0])
+		for index in range(1, names.size()):
+			path_string += "/" + String(names[index])
+	elif path_string == "":
+		path_string = "."
+	if subnames.size() > 0:
+		path_string += ":" + String(subnames[0])
+		for index in range(1, subnames.size()):
+			path_string += ":" + String(subnames[index])
+	return NodePath(path_string)
+
+func _find_first_skeleton(root: Node) -> Skeleton3D:
+	if root == null:
+		return null
+	if root is Skeleton3D:
+		return root
+	for child in root.get_children():
+		var skeleton_child: Skeleton3D = _find_first_skeleton(child)
+		if skeleton_child != null:
+			return skeleton_child
+	return null
 
 func _build_animation_aliases():
 	animation_aliases.clear()
@@ -395,7 +478,7 @@ func _physics_process(delta):
 	_process_attack_inputs()
 	update_animation(direction)
 	move_and_slide()
-	_keep_model_grounded()
+	#_keep_model_grounded()
 
 func update_animation(direction):
 	for attack_name in ATTACK_ANIMATION_NAMES:
