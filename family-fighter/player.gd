@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-class AttackDefinition:
+class PlayerAttackDefinition:
 	var id: StringName
 	var animation: StringName
 	var damage: float
@@ -86,7 +86,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var attack_cooldown_timer: float = 0.0
 var health: float = 0.0
 var attack_target: Node3D
-var current_attack: AttackDefinition
+var current_attack: PlayerAttackDefinition
 var punch_combo_timer: float = 0.0
 var kick_combo_timer: float = 0.0
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -105,10 +105,10 @@ func _ready():
 
 func _build_attack_definitions():
 	attack_definitions.clear()
-	attack_definitions[StringName("punch")] = AttackDefinition.new(StringName("punch"), StringName("punch"), punch_damage, punch_range, punch_cooldown)
-	attack_definitions[StringName("punch_combo")] = AttackDefinition.new(StringName("punch_combo"), StringName("punch_combo"), punch_combo_damage, punch_combo_range, punch_combo_cooldown, true)
-	attack_definitions[StringName("kick")] = AttackDefinition.new(StringName("kick"), StringName("kick"), kick_damage, kick_range, kick_cooldown)
-	attack_definitions[StringName("kick_combo")] = AttackDefinition.new(StringName("kick_combo"), StringName("kick_combo"), kick_combo_damage, kick_combo_range, kick_combo_cooldown, true)
+	attack_definitions[StringName("punch")] = PlayerAttackDefinition.new(StringName("punch"), StringName("punch"), punch_damage, punch_range, punch_cooldown)
+	attack_definitions[StringName("punch_combo")] = PlayerAttackDefinition.new(StringName("punch_combo"), StringName("punch_combo"), punch_combo_damage, punch_combo_range, punch_combo_cooldown, true)
+	attack_definitions[StringName("kick")] = PlayerAttackDefinition.new(StringName("kick"), StringName("kick"), kick_damage, kick_range, kick_cooldown)
+	attack_definitions[StringName("kick_combo")] = PlayerAttackDefinition.new(StringName("kick_combo"), StringName("kick_combo"), kick_combo_damage, kick_combo_range, kick_combo_cooldown, true)
 	ai_attack_distance = max(ai_attack_distance, attack_definitions[StringName("kick_combo")].attack_range)
 
 # Align imported animation tracks with the skeleton name used in the scene.
@@ -667,7 +667,7 @@ func _get_ai_attack_request() -> StringName:
 	return StringName()
 
 func _start_attack(attack_id: StringName) -> bool:
-	var attack_def: AttackDefinition = attack_definitions.get(attack_id, null)
+	var attack_def: PlayerAttackDefinition = attack_definitions.get(attack_id, null)
 	if attack_def == null:
 		_warn_missing_animation(attack_id)
 		return false
@@ -700,7 +700,7 @@ func _face_target_if_available() -> void:
 		return
 	_face_direction(to_target.normalized())
 
-func _apply_attack_hit(attack_def: AttackDefinition) -> void:
+func _apply_attack_hit(attack_def: PlayerAttackDefinition) -> void:
 	var target: Node3D = _select_attack_target()
 	if target == null:
 		return

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpb8l0u5bh0vh"]
+[gd_scene load_steps=15 format=3 uid="uid://dpb8l0u5bh0vh"]
 
 [ext_resource type="PackedScene" uid="uid://cobm7hcqnga4b" path="res://touch_ui.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://1i17lmxe4wsg" path="res://player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bcmqw3oemu6kr" path="res://opponent.tscn" id="3_oppo"]
 [ext_resource type="Texture2D" uid="uid://ch2ro5jk6dvid" path="res://animations/grass.png" id="4_ioo17"]
+[ext_resource type="Texture2D" uid="uid://dintm7dnxwo61" path="res://animations/fence.png" id="5_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://bxkcmpbrvg2iv" path="res://animations/pool.fbx" id="5_wse8f"]
 [ext_resource type="PackedScene" uid="uid://7mdrpyrmcbys" path="res://animations/shed.fbx" id="6_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://bm77qkcje3mxv" path="res://animations/swings.fbx" id="7_k3n1d"]
@@ -13,7 +14,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
 albedo_texture = ExtResource("4_ioo17")
 
-[sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_k3n1d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
+albedo_texture = ExtResource("5_ic0uy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj7yv"]
 size = Vector3(1.2335205, 1, 3.6142132)
@@ -26,22 +30,88 @@ transform = Transform3D(1, 0, 0, 0, -0.0050789337, 0.9999871, 0, -0.9999871, -0.
 [node name="Touch_UI" parent="." instance=ExtResource("1_f3sb7")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.96877384, 0.247946, 0, -0.247946, 0.96877384, 0.080356956, 3.1951754, 6.49656)
+transform = Transform3D(1, 0, 0, 0, 0.9987123, -0.050732378, 0, 0.050732378, 0.9987123, 0.080356956, 2.2452242, 6.6534204)
 
 [node name="Player" parent="." instance=ExtResource("2_fj7yv")]
 transform = Transform3D(-0.32320732, 0, 0.94632816, 0, 0.9502616, 0, -0.94632816, 0, -0.32320732, -1.2785509, 1.0176467, 3.3031726)
 target_path = NodePath("../Opponent")
 
 [node name="Opponent" parent="." instance=ExtResource("3_oppo")]
-transform = Transform3D(-0.04533402, 0, -0.9770789, 0, 1.900523, 0, 1.9992293, 0, -0.022155996, 2.8846903, 10.989777, 21.6844)
+transform = Transform3D(-0.05147966, 0, -1.3754274, -0.0015453114, 1.9005222, 2.122957e-05, 2.2702515, 0.0012936447, -0.031188838, 1.7732553, 3.7047424, 9.83003)
 target_path = NodePath("../Player")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(-15.699794, -5.7146277e-05, 0.013390861, -0.02813293, 0.031893667, -0.0025903527, 0.01393483, 5.5277396e-06, 15.081796, -0.00076293945, 0.038514733, 0.058105707)
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -0.21092224, -0.012347698, -0.53747535)
 material_override = SubResource("StandardMaterial3D_hiqwa")
-mesh = SubResource("BoxMesh_gv5m4")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -8.903397, -0.012347698, -0.49901336)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -8.903397, -0.012347698, 7.501143)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -0.24938202, -0.012347698, 7.501143)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, 8.258874, -0.012347698, -0.53747535)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, 8.220414, -0.012347698, 7.501143)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, 8.368336, -0.012347698, -8.505146)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -8.903397, -0.012347698, -8.559601)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-4.352331, -5.543541e-05, 0.003562179, -0.0077988086, 0.030939857, -0.0006890439, 0.0038625887, 5.3624185e-06, 4.0124407, -0.24938202, -0.012347698, -8.559601)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-3.7757688, -5.0691127e-05, 0.0010639153, -0.002103627, -0.011510422, -0.7833251, -0.0075271106, 0.02864468, -0.31476521, -0.21092224, 0.42471623, -8.968464)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-3.7757688, -5.0691127e-05, 0.0010639153, -0.002103627, -0.011510422, -0.7833251, -0.0075271106, 0.02864468, -0.31476521, 7.162796, 0.42471623, -8.968464)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = SubResource("PlaneMesh_k3n1d")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-3.7757688, -5.0691127e-05, 0.0010639153, -0.002103627, -0.011510422, -0.7833251, -0.0075271106, 0.02864468, -0.31476521, -7.592621, 0.42471623, -8.968464)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = SubResource("PlaneMesh_k3n1d")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -58,7 +128,7 @@ transform = Transform3D(0.13818784, 0, 0.99040604, 0, 1, 0, -0.99040604, 0, 0.13
 transform = Transform3D(-0.0030368958, 0, 0.9999954, 0, 1, 0, -0.9999954, 0, -0.0030368958, 0.115074635, 0.0565902, 1.0628662)
 
 [node name="trampoline" parent="." instance=ExtResource("8_2o6r5")]
-transform = Transform3D(1.5190945, 0, 0, 0, 1.6000085, 0, 0, 0, 1, 5.4991894, 0.01630646, 4.659668)
+transform = Transform3D(1.5190945, 0, 0, 0, 1.6000085, 0, 0, 0, 1.472486, 5.4991894, 0.01630646, 4.659668)
 
 [node name="playground" parent="." instance=ExtResource("9_70uel")]
 transform = Transform3D(0.02879396, 0, 0.9995854, 0, 1, 0, -0.9995854, 0, 0.02879396, -3.5462036, 0, -1.4373779)
